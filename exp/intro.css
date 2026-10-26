@@ -1,8 +1,11 @@
-/* EXPERIMENT „Intro“: Logo baut sich auf, dann öffnet sich der Hero wie ein Filmanfang.
+/* EXPERIMENT „Intro“: Logo baut sich bei jedem Öffnen auf, dann öffnet sich der Hero wie ein Filmanfang.
+   Dasselbe Logo dient als Ladebildschirm beim Sprung zu einem Abschnitt.
    Entfernen: <link>/<script> mit „exp/intro“ und den Block <!-- Intro --> in index.html löschen. */
 .intro, .letterbox { display: none; }
 html.has-intro body { overflow: hidden; }
 html.has-intro .intro { display: block; }
+.intro.is-on { display: block; }
+html.is-loading body { overflow: hidden; }
 html.has-intro .letterbox { display: block; }
 
 .intro { position: fixed; inset: 0; z-index: 60; cursor: pointer; }
