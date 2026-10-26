@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Qahwah – Specialty Coffee aus Salzburg</title>
+  <meta name="description" content="Qahwah von Hey Yalla Specialty Coffee: arabische Wurzeln, Jahrhunderte voller Kaffeekultur. Premium Blend Oman, 500 g.">
+  <meta name="theme-color" content="#022E28">
+  <meta property="og:title" content="Qahwah – Specialty Coffee aus Salzburg">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/img/qahwah-hero.webp">
+  <link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+  <header class="bar" data-bar>
+    <button class="bar__btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>Menü</button>
+    <a class="bar__logo" href="#top" aria-label="Qahwah – zur Startseite">
+      <img src="assets/img/logos/qahwah-white.png" alt="" width="1400" height="731">
+    </a>
+    <button class="bar__btn" type="button" aria-controls="cart" aria-expanded="false" data-cart-open>
+      Warenkorb <span class="bar__count" data-cart-count>0</span>
+    </button>
+  </header>
+
+  <nav class="menu" id="menu" aria-label="Hauptmenü" hidden>
+    <button class="menu__close" type="button" data-menu-close>Schließen</button>
+    <ul>
+      <li><a href="#oman">Oman Blend</a></li>
+      <li><a href="#geschichte">Geschichte</a></li>
+      <li><a href="#ausschank">Hier trinken</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <main id="inhalt">
+    <!-- Hero: das Kampagnenbild ist der Auftritt -->
+    <section class="hero" id="top">
+      <h1 class="sr">Qahwah – Specialty Coffee aus Salzburg</h1>
+      <picture class="hero__art" data-hero-art>
+        <source media="(max-width: 700px)" srcset="assets/img/qahwah-hero-900.webp">
+        <img src="assets/img/qahwah-hero.webp" width="1600" height="900"
+             alt="Der Schriftzug قهوة, gefüllt mit Schwarz-Weiß-Porträts von vier jungen Menschen">
+      </picture>
+      <p class="hero__line" data-hero-line>
+        Specialty Coffee aus Salzburg. Mit arabischen Wurzeln und einer Familiengeschichte, die 1905 in Damaskus beginnt.
+      </p>
+    </section>
+
+    <!-- Manifest: zwei Bücher auf Lochblech -->
+    <section class="manifest" aria-label="Worum es geht">
+      <div class="manifest__stage">
+        <div class="book book--stock" data-book="a">
+          <p>Trink das, wenn du Kaffee mit Geschichte willst.</p>
+        </div>
+        <div class="book book--kraft" data-book="b">
+          <p>Trink das, wenn du es kräftig magst.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produkt -->
+    <section class="product" id="oman" aria-labelledby="oman-title">
+      <figure class="product__pack">
+        <div class="pouch" data-pouch>
+          <div class="pouch__body" data-pouch-body>
+            <!-- Vorderseite, nachgebaut aus der Druckdatei -->
+            <div class="pouch__face pouch__face--front" role="img"
+                 aria-label="Kaffeepackung Qahwah Oman, Vorderseite: dunkler Standbeutel mit weißem Logo, dem Wort Oman und Rautenmuster">
+              <span class="pf__premium">premium blend</span>
+              <img class="pf__logo" src="assets/img/logos/qahwah-white.png" alt="">
+              <span class="pf__oman">Oman</span>
+              <span class="pf__yalla">YALLA<small>specialty coffee</small></span>
+              <svg class="pf__rauten" data-rauten-pack aria-hidden="true"></svg>
+            </div>
+            <!-- Rückseite -->
+            <div class="pouch__face pouch__face--back" role="img"
+                 aria-label="Rückseite: Geschmacksprofil und die Geschichte Created with love">
+              <span class="pb__valve"></span>
+              <div class="pb__table">
+                <p><b>Stärke</b><i data-pips="3"></i><em>3/5</em></p>
+                <p><b>Herkunft</b><em>Brasilien &amp; Indien</em></p>
+                <p><b>Mischung</b><em>Arabica &amp; Robusta</em></p>
+                <p><b>Röstgrad</b><i data-pips="5"></i><em>5/5</em></p>
+                <p><b>Intensität</b><i data-pips="4"></i><em>4/5</em></p>
+                <p><b>Säure</b><i data-pips="2"></i><em>2/5</em></p>
+              </div>
+              <div class="pb__band">
+                <strong>Created with love</strong>
+                <span>Die Geschichte des Kaffees als geröstetes Getränk reicht bis in den Jemen des 15. Jahrhunderts zurück – mitten ins Herz der arabischen Welt.</span>
+              </div>
+              <span class="pb__contact">HEY YALLA Specialty Coffee<br>YAZZOON e.U. 5020 Salzburg</span>
+              <span class="pb__weight">500G</span>
+            </div>
+          </div>
+          <span class="pouch__shadow" aria-hidden="true"></span>
+        </div>
+        <figcaption class="pouch__switch">
+          <button type="button" aria-pressed="true" data-side="0">Vorderseite</button>
+          <button type="button" aria-pressed="false" data-side="1">Rückseite</button>
+        </figcaption>
+      </figure>
+
+      <div class="product__info">
+        <p class="product__kind">Premium Blend, 500 g</p>
+        <h2 class="product__name" id="oman-title">Oman</h2>
+        <p class="product__aroma">
+          Kräftig, warm und vollmundig. Samtige Crema trifft auf feine Nussnoten, dunkle Schokolade
+          und eine dezente Röst-Süße. Inspiriert von der Wärme Omans: charaktervoll, intensiv und
+          mit einem harmonischen Nachklang.
+        </p>
+
+        <dl class="profile">
+          <div class="profile__row"><dt>Stärke</dt><dd><span class="dots" data-value="3" aria-label="3 von 5"></span></dd></div>
+          <div class="profile__row"><dt>Röstgrad</dt><dd><span class="dots" data-value="5" aria-label="5 von 5"></span></dd></div>
+          <div class="profile__row"><dt>Intensität</dt><dd><span class="dots" data-value="4" aria-label="4 von 5"></span></dd></div>
+          <div class="profile__row"><dt>Säure</dt><dd><span class="dots" data-value="2" aria-label="2 von 5"></span></dd></div>
+          <div class="profile__row"><dt>Herkunft</dt><dd>Brasilien &amp; Indien</dd></div>
+          <div class="profile__row"><dt>Mischung</dt><dd>Arabica &amp; Robusta</dd></div>
+        </dl>
+
+        <form class="buy" data-buy>
+          <!-- TODO: echten Preis eintragen (data-price in Cent) -->
+          <p class="buy__price" data-price="1890">18,90&nbsp;€</p>
+          <label class="buy__qty">
+            <span class="sr">Menge</span>
+            <button type="button" data-qty="-1" aria-label="Eine Packung weniger">−</button>
+            <input type="number" name="qty" value="1" min="1" max="20" inputmode="numeric">
+            <button type="button" data-qty="1" aria-label="Eine Packung mehr">+</button>
+          </label>
+          <button class="buy__add" type="submit">In den Warenkorb</button>
+          <p class="buy__status" role="status" data-buy-status></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Geschichte -->
+    <section class="story" id="geschichte" aria-labelledby="story-title">
+      <div class="story__head">
+        <h2 class="story__title" id="story-title">Created with love</h2>
+        <p>Arabische Wurzeln. Jahrhunderte voller Kaffeekultur. Eine Tasse voller Geschichte – und diese Geschichte geht weiter.</p>
+      </div>
+
+      <ol class="timeline">
+        <li>
+          <span class="timeline__when">15. Jh.</span>
+          <h3>Jemen</h3>
+          <p>Mitten im Herzen der arabischen Welt rösten Sufi-Mönche die Bohnen über offenem Feuer. Das Getränk begleitet sie durch lange Nächte.</p>
+        </li>
+        <li>
+          <span class="timeline__when">Mokka</span>
+          <h3>Die Reise beginnt</h3>
+          <p>Über den Hafen von Mokka tritt der Kaffee seine Reise in die Welt an.</p>
+        </li>
+        <li>
+          <span class="timeline__when">um 1550</span>
+          <h3>Damaskus</h3>
+          <p>Die ersten Kaffeehäuser entstehen: Orte, an denen Kaffee, Begegnung und arabische Gastfreundschaft zusammenkommen.</p>
+        </li>
+        <li>
+          <span class="timeline__when">1905</span>
+          <h3>Unsere Familie</h3>
+          <p>In Damaskus verbindet sich unsere Familiengeschichte mit der Tradition des Kaffeeröstens. Eine Leidenschaft, die über Generationen weitergetragen wurde.</p>
+        </li>
+        <li>
+          <span class="timeline__when">Heute</span>
+          <h3>Salzburg</h3>
+          <p>Wir führen diese Geschichte auf unsere eigene Weise fort: mit Respekt vor ihren arabischen Wurzeln und der Leidenschaft für außergewöhnlichen Kaffee.</p>
+        </li>
+      </ol>
+      <svg class="story__rauten" data-rauten aria-hidden="true"></svg>
+    </section>
+
+    <!-- Ausschank: die Häuser der Familie als laufende Banner -->
+    <section class="pour" id="ausschank" aria-labelledby="pour-title">
+      <div class="pour__text">
+        <h2 class="pour__title" id="pour-title">Hier wird Qahwah ausgeschenkt</h2>
+        <div class="pour__side">
+          <p>Unseren Kaffee gibt es frisch gebrüht in den Häusern unserer Familie in Salzburg.</p>
+          <ul class="pour__list">
+            <li><strong>Yazzoon</strong><span>Levante Kitchen, Ursulinenplatz 4</span></li>
+            <li><strong>Coffee &amp; Baar</strong><span>Powered by Yazzoon</span></li>
+            <li><strong>the b</strong><span>im DOC Salzburg</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="banners" aria-hidden="true">
+        <div class="banner banner--green" data-banner="-1">
+          <div class="banner__track" data-track>
+            <div class="banner__set">
+              <img src="assets/img/logos/yazzoon-white.png" alt="" class="logo--wide"><i class="raute"></i>
+              <img src="assets/img/logos/coffeebaar-white.png" alt="" class="logo--mid"><i class="raute"></i>
+              <img src="assets/img/logos/theb-white.png" alt="" class="logo--tall"><i class="raute"></i>
+              <img src="assets/img/logos/qahwah-white.png" alt="" class="logo--mid"><i class="raute"></i>
+            </div>
+          </div>
+        </div>
+        <div class="banner banner--kraft" data-banner="1">
+          <div class="banner__track" data-track>
+            <div class="banner__set">
+              <img src="assets/img/logos/theb-black.png" alt="" class="logo--tall"><i class="raute"></i>
+              <img src="assets/img/logos/qahwah-black.png" alt="" class="logo--mid"><i class="raute"></i>
+              <img src="assets/img/logos/yazzoon-black.png" alt="" class="logo--wide"><i class="raute"></i>
+              <img src="assets/img/logos/coffeebaar-black.png" alt="" class="logo--mid"><i class="raute"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" id="kontakt">
+    <div class="foot__cols">
+      <address>
+        <strong>Hey Yalla Specialty Coffee</strong>
+        YAZZOON e.U.<br>5020 Salzburg, Österreich
+      </address>
+      <p>
+        <a href="tel:+436801068767">+43 680 10 68767</a><br>
+        <a href="https://www.instagram.com/hey_yalla/" rel="noopener">Instagram @hey_yalla</a><br>
+        <a href="https://www.yalla-coffee.com">yalla-coffee.com</a>
+      </p>
+      <ul class="foot__legal">
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">AGB</a></li>
+      </ul>
+    </div>
+    <img class="foot__logo" src="assets/img/logos/qahwah-white.png" alt="Qahwah" width="1400" height="731" loading="lazy">
+  </footer>
+
+  <aside class="cart" id="cart" aria-label="Warenkorb" hidden>
+    <div class="cart__head">
+      <h2>Dein Warenkorb</h2>
+      <button type="button" data-cart-close>Schließen</button>
+    </div>
+    <div class="cart__body" data-cart-body></div>
+    <div class="cart__foot">
+      <p class="cart__total"><span>Summe</span> <strong data-cart-total>0,00 €</strong></p>
+      <button class="cart__checkout" type="button" disabled>Zur Kasse</button>
+      <p class="cart__note">Die Online-Kasse ist noch nicht aktiv.</p>
+    </div>
+  </aside>
+  <div class="scrim" data-scrim hidden></div>
+
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
