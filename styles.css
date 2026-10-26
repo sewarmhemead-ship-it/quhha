@@ -1,3 +1,11 @@
+/* Reem Kufi (SIL OFL) für arabische Bildunterschriften */
+@font-face {
+  font-family: "Reem Kufi";
+  src: url(assets/fonts/reemkufi-arabic.woff2) format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0898-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
 /* Archivo (SIL OFL), selbst gehostet – variable Breite und Stärke */
 @font-face {
   font-family: "Archivo";
@@ -253,20 +261,56 @@ button { font: inherit; color: inherit; }
 
 .timeline { list-style: none; margin: 0; padding: 0; max-width: 980px; position: relative; z-index: 1; }
 .timeline li {
-  display: grid; grid-template-columns: minmax(150px, 3fr) auto 6fr; column-gap: clamp(20px, 4vw, 56px); align-items: start;
+  display: grid; grid-template-columns: minmax(150px, 3fr) 7fr; column-gap: clamp(20px, 4vw, 56px); align-items: start;
   border-top: 1px solid var(--green-line); padding: 26px 0 30px;
 }
 .timeline__when { grid-row: span 2; font-size: clamp(44px, 6.4vw, 92px); color: var(--kraft); }
 .timeline h3 { margin: 4px 0 6px; font-size: 21px; font-weight: 700; }
 .timeline p { margin: 0; max-width: 54ch; color: #CFDAD6; }
-/* Bild pro Station: Raute wie im Logo, von alt (verblasst) zu neu (scharf) */
+/* Bild pro Station: großes Schwarz-Weiß-Foto mit abgeschrägten Ecken (wie die Rauten im Logo) */
 .timeline__bild {
-  grid-row: span 2; align-self: center; margin: 0;
-  width: clamp(96px, 11vw, 150px); aspect-ratio: 1;
-  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  --cut: 20px;
+  grid-column: 1 / -1; position: relative; margin: 18px 0 20px;
+  aspect-ratio: 4 / 3; overflow: hidden;
+  clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
 }
-.timeline__bild img { width: 100%; height: 100%; object-fit: cover; transition: scale .8s var(--ease); }
-.timeline li:hover .timeline__bild img { scale: 1.12; }
+.timeline__bild img, .stage__bild img { width: 100%; height: 100%; object-fit: cover; }
+.timeline__bild figcaption, .stage__bild figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+  padding: 48px 22px 16px;
+  background: linear-gradient(transparent, rgba(2, 46, 40, .85));
+  font-size: 13px; color: rgba(255, 255, 255, .8);
+}
+.timeline__bild figcaption span, .stage__bild figcaption span {
+  font-family: "Reem Kufi", var(--display); font-weight: 600; font-size: 30px; line-height: 1; color: var(--white);
+}
+
+.story__stage { display: none; }
+
+@media (min-width: 901px) {
+  .story__body { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 100px); align-items: start; position: relative; z-index: 1; }
+  .story__rauten { display: none; }
+  .timeline__bild { display: none; }
+  .story { overflow: clip; }
+  .timeline li { min-height: 58vh; align-content: center; grid-template-columns: minmax(130px, 2fr) 3fr; opacity: .3; transition: opacity .6s var(--ease); }
+  .timeline__when { font-size: clamp(44px, 4.8vw, 80px); }
+  .timeline li.is-active { opacity: 1; }
+
+  .story__stage { display: block; position: sticky; top: 96px; height: min(calc(100vh - 140px), 820px); }
+  .stage__bild {
+    --cut: 28px;
+    position: absolute; inset: 0; margin: 0; opacity: 0; overflow: hidden;
+    clip-path: polygon(var(--cut) 0, calc(100% - var(--cut)) 0, 100% var(--cut), 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, var(--cut) 100%, 0 calc(100% - var(--cut)), 0 var(--cut));
+    transition: opacity 1s var(--ease);
+  }
+  .stage__bild img { scale: 1.08; transition: scale 1.8s var(--ease); }
+  .stage__bild.is-active { opacity: 1; }
+  .stage__bild.is-active img { scale: 1; }
+  .stage__bild figcaption { padding: 80px 28px 24px; font-size: 14px; }
+  .stage__bild figcaption span { font-size: 44px; }
+}
+
 
 .story__rauten {
   position: absolute; right: 0; top: 18%; width: clamp(160px, 26vw, 380px); height: 70%;
@@ -360,10 +404,8 @@ button { font: inherit; color: inherit; }
   .book { width: min(300px, 78vw); }
   .book--stock { transform: rotate(-7deg) translateX(-14px); }
   .book--kraft { transform: rotate(-7deg) translate(14px, -30px); }
-  .timeline li { grid-template-columns: 1fr auto; }
+  .timeline li { grid-template-columns: 1fr; }
   .timeline__when { grid-row: auto; margin-bottom: 8px; }
-  .timeline__bild { grid-column: 2; grid-row: 1 / span 3; width: 92px; }
-  .timeline h3, .timeline p { grid-column: 1; }
   .story__rauten { opacity: .18; }
   .hero { min-height: 82svh; padding-top: 90px; overflow: hidden; }
   .hero__art { width: 124%; max-width: none; justify-self: start; margin-left: -12%; }

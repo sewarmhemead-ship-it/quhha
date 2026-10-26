@@ -83,6 +83,22 @@
     draw(false);
   }
 
+  /* ---------- Geschichte: großes Bild wechselt mit der Station ---------- */
+  const stations = $$(".timeline li");
+  const stageImgs = $$("[data-stage-i]");
+  if (stations.length && stageImgs.length && "IntersectionObserver" in window) {
+    const show = (i) => {
+      stageImgs.forEach((el, j) => el.classList.toggle("is-active", j === i));
+      stations.forEach((el, j) => el.classList.toggle("is-active", j === i));
+    };
+    // Aktiv ist die Station, die gerade die Bildschirmmitte kreuzt
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) show(stations.indexOf(e.target)); });
+    }, { rootMargin: "-50% 0px -50% 0px" });
+    stations.forEach((li) => io.observe(li));
+    show(0);
+  }
+
   /* ---------- Kopfleiste ---------- */
   const bar = $("[data-bar]");
   const onScroll = () => bar.classList.toggle("is-solid", window.scrollY > window.innerHeight * 0.6);
@@ -178,12 +194,6 @@
   // Bücher richten sich beim Scrollen auf
   gsap.from('[data-book="a"]', { rotation: -24, x: -120, y: 80, scrollTrigger: { trigger: ".manifest", start: "top 85%", end: "center center", scrub: 1 } });
   gsap.from('[data-book="b"]', { rotation: 12, x: 120, y: -40, scrollTrigger: { trigger: ".manifest", start: "top 85%", end: "center center", scrub: 1 } });
-
-  // Bilder der Geschichte öffnen sich als Raute, Station für Station
-  $$(".timeline__bild").forEach((el) => gsap.from(el, {
-    clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)", duration: 1, ease: "expo.out",
-    scrollTrigger: { trigger: el, start: "top 85%" },
-  }));
 
   // Banner laufen gleichmäßig gegeneinander; Scrollen gibt etwas Schwung
   let boost = 0, visible = false;
