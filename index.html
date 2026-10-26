@@ -13,9 +13,32 @@
   <link rel="stylesheet" href="styles.css">
   <!-- Experimente: je eine Zeile, zum Entfernen löschen -->
   <link rel="stylesheet" href="exp/raute-cursor.css">
+  <link rel="stylesheet" href="exp/intro.css">
+  <link rel="stylesheet" href="exp/kampagne.css">
+  <script src="exp/intro.js"></script>
 </head>
 <body>
   <a class="skip" href="#inhalt">Zum Inhalt springen</a>
+
+  <!-- Intro (Experiment): Logo baut sich auf, dann Vorhang -->
+  <div class="intro" data-intro aria-hidden="true">
+    <div class="intro__half intro__half--top"></div>
+    <div class="intro__half intro__half--bottom"></div>
+    <div class="intro__stage">
+      <div class="intro__logo">
+        <img class="intro__letters" src="assets/img/logos/intro-letters.png" alt="">
+        <img class="intro__word" src="assets/img/logos/intro-word.png" alt="">
+        <i class="intro__raute" style="--x:7;--y:28;--s:136"></i>
+        <i class="intro__raute" style="--x:160;--y:28;--s:136"></i>
+        <i class="intro__raute" style="--x:1090;--y:3;--s:138"></i>
+        <i class="intro__raute" style="--x:1243;--y:2;--s:137"></i>
+      </div>
+    </div>
+    <p class="intro__hint">Klicken zum Überspringen</p>
+  </div>
+  <div class="letterbox" data-letterbox aria-hidden="true"><i></i><i></i></div>
+  <!-- /Intro -->
+
 
   <header class="bar" data-bar>
     <button class="bar__btn" type="button" aria-expanded="false" aria-controls="menu" data-menu-open>Menü</button>
@@ -175,6 +198,24 @@
       <svg class="story__rauten" data-rauten aria-hidden="true"></svg>
     </section>
 
+    <!-- Kampagne (Experiment): Gesichter in Rauten -->
+    <section class="kampagne" aria-labelledby="kampagne-title">
+      <div class="kampagne__text">
+        <h2 id="kampagne-title">Yalla. Noch eine Tasse.</h2>
+        <p>Für lange Nächte, laute Tische und alle, die nicht stillsitzen.</p>
+      </div>
+      <div class="rauten-feld">
+        <figure class="rf" style="--i:0;--j:0;--mi:0;--mj:0"><img src="assets/img/kampagne/fenster.webp" alt="Junger Mann mit Locken und Brille schaut aus einem Autofenster" loading="lazy"></figure>
+        <figure class="rf" style="--i:2;--j:0;--mi:2;--mj:0"><img src="assets/img/kampagne/hijab.webp" alt="Frau mit Hijab und weißer Sonnenbrille" loading="lazy"></figure>
+        <figure class="rf rf--desk" style="--i:4;--j:0"><img src="assets/img/kampagne/hut.webp" alt="Frau mit Hut und Halskette" loading="lazy"></figure>
+        <figure class="rf rf--wort" style="--i:1;--j:1;--mi:1;--mj:1"><span>Yalla</span></figure>
+        <figure class="rf" style="--i:3;--j:1;--mi:1;--mj:3"><img src="assets/img/kampagne/tasse.webp" alt="Hand hält eine Tasse schwarzen Kaffee" loading="lazy"></figure>
+        <figure class="rf" style="--i:0;--j:2;--mi:0;--mj:2"><img src="assets/img/kampagne/wasser.webp" alt="Person mit runder Sonnenbrille, halb im dunklen Wasser" loading="lazy"></figure>
+        <figure class="rf" style="--i:2;--j:2;--mi:2;--mj:2"><img src="assets/img/kampagne/keffiyeh.webp" alt="Mann mit Kufiya lehnt an einer offenen Autotür" loading="lazy"></figure>
+      </div>
+    </section>
+    <!-- /Kampagne -->
+
     <!-- Ausschank: die Häuser der Familie als laufende Banner -->
     <section class="pour" id="ausschank" aria-labelledby="pour-title">
       <div class="pour__text">
@@ -254,5 +295,6 @@
   <!-- Experimente: je eine Zeile, zum Entfernen löschen -->
   <script src="exp/raute-cursor.js"></script>
   <script src="exp/packung-dreht.js"></script>
+  <script src="exp/kampagne.js"></script>
 </body>
 </html>

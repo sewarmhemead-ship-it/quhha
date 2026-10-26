@@ -166,12 +166,14 @@
 
   if (reduce) return;
 
-  // Das eine große Moment: Hero-Auftritt
-  gsap.timeline({ defaults: { ease: "expo.out" } })
-    .from("[data-hero-art]", { clipPath: "inset(100% 0 0 0)", y: 60, duration: 1.6 })
-    .from("[data-hero-art] img", { scale: 1.12, duration: 2.2 }, 0)
-    .from("[data-hero-line]", { opacity: 0, y: 16, duration: 1 }, 0.9)
-    .from(".bar", { opacity: 0, duration: 0.8 }, 1);
+  // Das eine große Moment: Hero-Auftritt (übernimmt das Intro, falls aktiv)
+  if (!document.documentElement.classList.contains("has-intro")) {
+    gsap.timeline({ defaults: { ease: "expo.out" } })
+      .from("[data-hero-art]", { clipPath: "inset(100% 0 0 0)", y: 60, duration: 1.6 })
+      .from("[data-hero-art] img", { scale: 1.12, duration: 2.2 }, 0)
+      .from("[data-hero-line]", { opacity: 0, y: 16, duration: 1 }, 0.9)
+      .from(".bar", { opacity: 0, duration: 0.8 }, 1);
+  }
 
   // Bücher richten sich beim Scrollen auf
   gsap.from('[data-book="a"]', { rotation: -24, x: -120, y: 80, scrollTrigger: { trigger: ".manifest", start: "top 85%", end: "center center", scrub: 1 } });

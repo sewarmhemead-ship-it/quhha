@@ -1,0 +1,38 @@
+/* EXPERIMENT „Kampagne“: Schwarz-Weiß-Fotos in Rauten wie die Kaskade auf der Packung.
+   Entfernen: <link>/<script> mit „exp/kampagne“ und den Block <!-- Kampagne --> löschen. */
+.kampagne {
+  background: var(--kraft); color: var(--ink);
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center;
+  padding: clamp(90px, 11vw, 170px) var(--gutter);
+  overflow: hidden;
+}
+.kampagne__text h2 {
+  margin: 0;
+  font-weight: 900; font-stretch: 62%; text-transform: uppercase; line-height: .84; letter-spacing: -.01em;
+  font-size: clamp(64px, 9vw, 150px);
+}
+.kampagne__text p { max-width: 32ch; margin: 26px 0 0; font-size: 19px; }
+
+.rauten-feld { container-type: inline-size; position: relative; width: 100%; aspect-ratio: 3 / 2; }
+.rf {
+  margin: 0;
+  --d: 33.333cqw;
+  position: absolute; width: var(--d); aspect-ratio: 1;
+  left: calc(var(--i) * var(--d) / 2); top: calc(var(--j) * var(--d) / 2);
+  clip-path: polygon(50% 3%, 97% 50%, 50% 97%, 3% 50%);
+  overflow: hidden; background: #2b2b2b;
+}
+.rf img { width: 100%; height: 114%; margin-top: -7%; max-width: none; object-fit: cover; transition: scale .9s var(--ease); }
+.rf:hover img { scale: 1.1; }
+.rf--wort { background: var(--green); display: grid; place-items: center; }
+.rf--wort span {
+  color: var(--white); font-weight: 900; font-stretch: 62%; text-transform: uppercase; line-height: .9;
+  font-size: calc(var(--d) * .2); text-align: center;
+}
+
+@media (max-width: 900px) {
+  .kampagne { grid-template-columns: 1fr; }
+  .rauten-feld { aspect-ratio: 4 / 5; }
+  .rf--desk { display: none; }
+  .rf { --d: 50cqw; left: calc(var(--mi) * var(--d) / 2); top: calc(var(--mj) * var(--d) / 2); }
+}
