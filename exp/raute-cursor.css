@@ -1,0 +1,15 @@
+/* EXPERIMENT „Rauten-Cursor“: Mauszeiger als Raute aus dem Logo.
+   Entfernen: <link> und <script> mit „exp/raute-cursor“ löschen. */
+@media (hover: hover) and (pointer: fine) {
+  html.has-raute, html.has-raute * { cursor: none !important; }
+  html.has-raute input { cursor: text !important; }
+  .raute-cursor {
+    position: fixed; left: 0; top: 0; z-index: 100; pointer-events: none;
+    width: 14px; height: 14px; margin: -7px 0 0 -7px;
+    background: #fff; mix-blend-mode: difference;
+    transform: rotate(45deg);
+    transition: width .25s, height .25s, margin .25s, opacity .2s;
+  }
+  .raute-cursor.is-big { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+  .raute-cursor.is-hidden { opacity: 0; }
+}
