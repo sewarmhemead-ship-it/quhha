@@ -195,23 +195,18 @@
   gsap.from('[data-book="a"]', { rotation: -24, x: -120, y: 80, scrollTrigger: { trigger: ".manifest", start: "top 85%", end: "center center", scrub: 1 } });
   gsap.from('[data-book="b"]', { rotation: 12, x: 120, y: -40, scrollTrigger: { trigger: ".manifest", start: "top 85%", end: "center center", scrub: 1 } });
 
-  // Banner laufen gleichmäßig gegeneinander; Scrollen gibt etwas Schwung
-  let boost = 0, visible = false;
-  ScrollTrigger.create({
-    trigger: ".pour", start: "top bottom", end: "bottom top",
-    onToggle: (self) => {
-      visible = self.isActive;
-    },
-    onUpdate: (self) => {
-      boost = Math.min(4, Math.abs(self.getVelocity()) / 400);
-    },
-  });
+  // Banner laufen immer gleichmäßig gegeneinander; Scrollen gibt etwas Schwung
+  let boost = 0, lastY = scrollY;
+  addEventListener("scroll", () => {
+    boost = Math.min(4, boost + Math.abs(scrollY - lastY) / 120);
+    lastY = scrollY;
+  }, { passive: true });
   gsap.ticker.add((time, dt) => {
-    if (!visible) return;
     boost *= 0.94;
     const speed = (0.06 * dt) * (1 + boost);
     banners.forEach((b) => {
       const w = b.set.offsetWidth;
+      if (!w) return;
       b.x += speed * b.dir;
       b.x = ((b.x % w) + w) % w - w; // zwischen -w und 0 halten
       gsap.set(b.track, { x: b.x });
