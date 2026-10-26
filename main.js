@@ -179,6 +179,12 @@
   gsap.from('[data-book="a"]', { rotation: -24, x: -120, y: 80, scrollTrigger: { trigger: ".manifest", start: "top 85%", end: "center center", scrub: 1 } });
   gsap.from('[data-book="b"]', { rotation: 12, x: 120, y: -40, scrollTrigger: { trigger: ".manifest", start: "top 85%", end: "center center", scrub: 1 } });
 
+  // Bilder der Geschichte öffnen sich als Raute, Station für Station
+  $$(".timeline__bild").forEach((el) => gsap.from(el, {
+    clipPath: "polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)", duration: 1, ease: "expo.out",
+    scrollTrigger: { trigger: el, start: "top 85%" },
+  }));
+
   // Banner laufen gleichmäßig gegeneinander; Scrollen gibt etwas Schwung
   let boost = 0, visible = false;
   ScrollTrigger.create({
