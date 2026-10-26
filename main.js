@@ -60,12 +60,13 @@
       $$("[data-side]").forEach((b) => b.setAttribute("aria-pressed", String(Number(b.dataset.side) === (back ? 1 : 0))));
     };
     const snap = () => { rot = Math.round(rot / 180) * 180; draw(true); };
-    $$("[data-side]").forEach((b) => b.addEventListener("click", () => {
-      const wantBack = b.dataset.side === "1";
+    const showSide = (wantBack) => {
       const isBack = Math.round(rot / 180) % 2 !== 0;
       if (wantBack !== isBack) rot += 180;
       draw(true);
-    }));
+    };
+    $$("[data-side]").forEach((b) => b.addEventListener("click", () => showSide(b.dataset.side === "1")));
+    window.qahwahPouch = { showSide };
     pouch.addEventListener("pointerdown", (e) => { dragging = true; startX = e.clientX; startRot = rot; pouch.setPointerCapture(e.pointerId); });
     pouch.addEventListener("pointermove", (e) => {
       if (dragging) { rot = startRot + (e.clientX - startX) * 0.6; tilt = 0; draw(false); return; }
