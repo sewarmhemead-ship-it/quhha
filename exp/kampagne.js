@@ -14,6 +14,13 @@
       scrollTrigger: { trigger: ".kampagne", start: "top bottom", end: "bottom top", scrub: true },
     });
   });
+  // Telefon: kein Hover – die Fotos zoomen stattdessen beim Scrollen langsam heran
+  gsap.matchMedia().add("(max-width: 900px)", () => {
+    tiles.forEach((el) => {
+      const img = el.querySelector("img");
+      if (img) gsap.fromTo(img, { scale: 1.25 }, { scale: 1, ease: "none", scrollTrigger: { trigger: el, start: "top bottom", end: "bottom 30%", scrub: true } });
+    });
+  });
   gsap.from(".kampagne__text h2", {
     yPercent: 30, opacity: 0, duration: 1.2, ease: "expo.out",
     scrollTrigger: { trigger: ".kampagne", start: "top 70%" },

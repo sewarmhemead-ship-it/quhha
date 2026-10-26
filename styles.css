@@ -421,3 +421,61 @@ button { font: inherit; color: inherit; }
 
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
+/* ---------- Telefon: näher am Desktop-Erlebnis ---------- */
+.hero__line strong { font-weight: inherit; }
+.story__dots, .buybar { display: none; }
+
+@media (max-width: 900px) {
+  /* Geschichte: Karten zum Wischen statt langer Liste */
+  .story__body { margin-inline: calc(var(--gutter) * -1); }
+  .story__rauten { display: none; }
+  .timeline {
+    display: flex; gap: 14px; max-width: none;
+    overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter);
+    padding: 0 var(--gutter) 6px; scrollbar-width: none;
+  }
+  .timeline::-webkit-scrollbar { display: none; }
+  .timeline li { display: block; flex: 0 0 84%; scroll-snap-align: start; border: 0; padding: 0; }
+  .timeline__when { display: block; font-size: 54px; margin: 0; }
+  .timeline__bild { aspect-ratio: 4 / 5; margin: 14px 0 18px; }
+  .story__dots { display: flex; justify-content: center; gap: 14px; margin-top: 26px; }
+  .story__dots button {
+    width: 30px; height: 30px; padding: 0; border: 0; background: none; cursor: pointer;
+    display: grid; place-items: center;
+  }
+  .story__dots button::before {
+    content: ""; width: 10px; height: 10px; transform: rotate(45deg);
+    border: 1.5px solid var(--kraft); transition: background-color .3s;
+  }
+  .story__dots button.is-on::before { background: var(--kraft); }
+
+  /* Kaufleiste unten, solange man im Produkt liest */
+  .buybar {
+    display: flex; align-items: center; gap: 12px;
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 25;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+    background: var(--paper); color: var(--ink);
+    box-shadow: 0 -10px 30px -12px rgba(2, 46, 40, .35);
+    transform: translateY(110%); transition: transform .45s var(--ease);
+  }
+  .buybar.is-on { transform: none; }
+  .buybar img { width: 28px; height: auto; }
+  .buybar__info { margin: 0; flex: 1; line-height: 1.25; }
+  .buybar__info strong { display: block; font-weight: 900; font-stretch: 62%; text-transform: uppercase; font-size: 22px; color: var(--green); }
+  .buybar__info span { font-size: 14px; }
+  .buybar__add { height: 46px; padding: 0 18px; border: 0; background: var(--green); color: var(--white); font-weight: 700; }
+}
+
+@media (max-width: 640px) {
+  /* Hero füllt den Bildschirm wie ein Plakat */
+  .hero { min-height: 100svh; grid-template-rows: 1fr auto; align-content: stretch; padding: 84px var(--gutter) 34px; }
+  .hero__art { width: 118%; margin-left: -9%; align-self: center; }
+  .hero__line { justify-self: stretch; text-align: left; max-width: none; margin: 0; font-size: 16px; }
+  .hero__line strong {
+    display: block; margin-bottom: 12px; color: var(--white);
+    font-weight: 900; font-stretch: 62%; text-transform: uppercase; line-height: .9;
+    font-size: clamp(44px, 13vw, 60px);
+  }
+}

@@ -46,6 +46,9 @@
       .from("[data-hero-line]", { opacity: 0, y: 16, duration: 1 }, 4.1)
       .from(".bar", { opacity: 0, y: -10, duration: 0.8 }, 4.2);
 
+    // Telefon: dasselbe Intro, nur zügiger (ca. 3,5 statt 5 Sekunden)
+    if (matchMedia("(max-width: 900px)").matches) intro1.timeScale(1.45);
+
     const skipIntro = () => { if (intro1.progress() < 1) intro1.progress(1); };
     intro.addEventListener("click", skipIntro);
     addEventListener("keydown", skipIntro, { once: true });

@@ -2,7 +2,7 @@
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-  const euro = (cents) => (cents / 100).toLocaleString("de-AT", { style: "currency", currency: "EUR" });
+  const euro = (cents) => (cents / 100).toLocaleString("de-DE", { style: "currency", currency: "EUR" });
 
   /* ---------- Geschmacksprofil: Rauten statt Punkte ---------- */
   $$(".dots").forEach((el) => {
@@ -97,6 +97,23 @@
     }, { rootMargin: "-50% 0px -50% 0px" });
     stations.forEach((li) => io.observe(li));
     show(0);
+
+    // Mobil: Stationen als Karten zum Wischen, Rauten zeigen die Position
+    const track = $(".timeline");
+    const dots = document.createElement("div");
+    dots.className = "story__dots";
+    dots.innerHTML = stations.map((li, i) =>
+      `<button type="button" aria-label="Station ${i + 1}: ${$("h3", li).textContent}"></button>`).join("");
+    track.after(dots);
+    const dotEls = $$("button", dots);
+    const mark = (i) => dotEls.forEach((d, j) => d.classList.toggle("is-on", j === i));
+    const cardIo = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) mark(stations.indexOf(e.target)); });
+    }, { root: track, threshold: 0.6 });
+    stations.forEach((li) => cardIo.observe(li));
+    dotEls.forEach((d, i) => d.addEventListener("click", () =>
+      track.scrollTo({ left: stations[i].offsetLeft - track.offsetLeft - parseFloat(getComputedStyle(track).paddingLeft), behavior: "smooth" })));
+    mark(0);
   }
 
   /* ---------- Kopfleiste ---------- */
@@ -162,6 +179,27 @@
     status.textContent = `${n} × Oman im Warenkorb.`;
   });
   render();
+
+  /* ---------- Mobil: Kaufleiste, solange man im Produkt liest ---------- */
+  const buybar = $("[data-buybar]");
+  if (buybar && "IntersectionObserver" in window) {
+    $("[data-buybar-price]", buybar).textContent = `500 g, ${euro(product.price)}`;
+    let inProduct = false, formSeen = false;
+    const update = () => {
+      const on = inProduct && !formSeen && matchMedia("(max-width: 900px)").matches;
+      buybar.classList.toggle("is-on", on);
+      buybar.inert = !on;
+    };
+    new IntersectionObserver(([e]) => { inProduct = e.isIntersecting; update(); }).observe($("#oman"));
+    new IntersectionObserver(([e]) => { formSeen = e.isIntersecting; update(); }).observe(form);
+    const addBtn = $("[data-buybar-add]", buybar);
+    addBtn.addEventListener("click", () => {
+      form.requestSubmit();
+      addBtn.textContent = "Hinzugefügt";
+      setTimeout(() => { addBtn.textContent = "In den Warenkorb"; }, 1600);
+    });
+    update();
+  }
 
   /* ---------- Bewegung ---------- */
   if (!window.gsap) return;
