@@ -54,4 +54,7 @@
         gsap.set([...items, ...places, story, ".story__rauten"], { clearProps: "all" });
       };
   });
+  // Alle Trigger nach Position ordnen, damit sie den Pin-Abstand kennen
+  ScrollTrigger.sort();
+  ScrollTrigger.refresh();
 })();
